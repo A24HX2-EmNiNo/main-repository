@@ -1,0 +1,37 @@
+definer gravitationskonstant
+G=6.67*10^-11
+
+variabler:
+M= stjerne masse
+m= planet masse
+r= start afstand mellem planet og stjerne
+ellipseradius //giver sig selv
+
+setup()
+size(x,x)
+M= M //indsæt værdi
+m= m //indsæt værdi
+r= r //indsæt værdi
+ellipseradius= beregnEllipseRadius(M,m,r)
+
+draw()
+background(0)
+fill(255,255,0) //sætter farven til gul
+ellipse(width/2,height/2,20,20) //tegner solen i midten
+
+//tegn planetens bane
+noFill() //udfylder ikke tegningen
+stroke(255,255,255) //sætter farven til hvid
+
+ellipse(0,0,ellipseradius*2,ellipseradius*1.6) //tegner ellipsen i rigtig forhold
+
+funktion beregnTyngdeKraft(M,m,r)
+return(G*M*m)/(r*r)
+
+funktion beregnEllipseRadius(M,m,r)
+F= beregnTyngdeKraft
+skaleringsfaktor= 1*10^9 //bruges til at gøre ellipsen synlig på skærmen ved at skalere værdien
+radius= skaleringsfaktor/F //sikre at radius bliver beregnet ud fra tyngdekraften
+return constrain(radius,50,350) // begrænser størrelsen af ellipsen
+
+
